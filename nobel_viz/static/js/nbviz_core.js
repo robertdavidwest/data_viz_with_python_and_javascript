@@ -36,12 +36,17 @@
     };
 
     var nestDataByYear = function(entries) {
-        //...
+    return nbviz.data.years = d3.nest()
+      .key(function(w) {
+        return w.year
+      })
+      .entries(entries);
     };
 
     nbviz.makeFilterAndDimensions = function(winnersData){
         // ADD OUR FILTER AND CREATE CATEGORY DIMENSIONS
         nbviz.filter = crossfilter(winnersData);
+
         nbviz.countryDim = nbviz.filter.dimension(function(o){
             return o.country;
         });
@@ -53,7 +58,6 @@
         nbviz.genderDim = nbviz.filter.dimension(function(o){
             return o.gender;
         });
-
     };
 
     nbviz.filterByCountries = function(countryNames) {
@@ -65,16 +69,31 @@
     };
 
     nbviz.getCountryData = function() {
+
+
+
         var countryGroups =  nbviz.countryDim.group().all();
 
         // make main data ball
         var data = countryGroups.map( function(c) {
+
             var cData = nbviz.data.countryData[c.key];
             var value = c.value;
-            // if per-capita value then divide by population size
-            if (nbviz.valuePerCapita){
+
+            // If country data not available then replace with fake data
+            if (cData === undefined) {              
+                cData = {alpha3Code: c.key,
+                         area: 100000000000000,
+                         capital: "FAKE",
+                         gini: 1000000,
+                         latlng: [0, 0],
+                         name: c.key
+                }
+            }
+
+                if (nbviz.valuePerCapita){
                 value = value/ cData.population
-            }            
+            }       
             return {
                 key: c.key, // e.g. Japan
                 value: value, // e.g. 19 (prizes)
@@ -90,11 +109,16 @@
     };
 
     nbviz.onDataChange = function() {
+        console.log("in 'onDataChange' function");
         var data = nbviz.getCountryData();
+
         nbviz.updateBarChart(data);
-        nbviz.updateMap(data);
-        nbviz.updateList(nbviz.countryDim.top(Infinity));
+        //nbviz.updateMap(data);
+        //nbviz.updateList(nbviz.countryDim.top(Infinity));
+        
+        console.log(nbviz.countryDim.top(Infinity));
         data = nestDataByYear(nbviz.countryDim.top(Infinity));
+        console.log(data);
         nbviz.updateTimeChart(data);
     }
 
