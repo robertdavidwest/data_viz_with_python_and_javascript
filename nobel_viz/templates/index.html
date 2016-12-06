@@ -61,46 +61,54 @@ Number of Winners:&nbsp;
 <p></p>
 </div>
 </div>
+
 <!-- LIST OF WINNERS -->
 <div id="nobel-list">
 <h2>Selected winners</h2>
 <table>
-<thead>
-<tr>
-<th id='year'>Year</th>
-<th id='category'>Category</th>
-<th id='name'>Name</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
+  <thead>
+    <tr>
+      <th id='year'>Year</th>
+      <th id='category'>Category</th>
+      <th id='name'>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
 </table>
+
 </div>
+
 <!-- BIOGRAPHY BOX -->
 <div id="nobel-winner">
-<div id="picbox"></div>
-<div id='winner-title'></div>
-<div id='infobox'>
-<div class='property'>
-<div class='label'>Category</div>
-<span name='category'></span>
+  <div id="picbox"><img></div>
+  <div id='winner-title'></div>
+
+  <div id='infobox'>
+    <div class='property'>
+      <div class='label'>Category</div>
+      <span name='category'></span>
+    </div>
+
+    <div class='property'>
+      <div class='label'>Year</div>
+      <span name='year'></span>
+    </div>
+
+    <div class='property'>
+      <div class='label'>Country</div>
+      <span name='country'></span>
+    </div>
+  </div>
+
+  <div id='biobox'></div>
+  <div id='readmore'><a href='#'>Read more at Wikipedia</a></div>
 </div>
-<div class='property'>
-<div class='label'>Year</div>
-<span name='year'></span>
-</div>
-<div class='property'>
-<div class='label'>Country</div>
-<span name='country'></span>
-</div>
-</div>
-<div id='biobox'></div>
-<div id='readmore'><a href='#'>Read more at Wikipedia</a>
-</div>
-</div>
+
 <!-- NOBEL BAR CHART -->
 <div id="nobel-bar"></div>
 </div>
+
 <!-- END NOBEL-VIZ COMPONENTS -->
 </div>
 </div>
@@ -125,7 +133,7 @@ Number of Winners:&nbsp;
 <script src="static/js/nbviz_map.js"></script>
 <script src="static/js/nbviz_bar.js"></script>
 <script src="static/js/nbviz_time.js"></script>
-<!--<script src="static/js/nbviz_details.js"></script>-->
+<script src="static/js/nbviz_details.js"></script>
 <script src="static/js/nbviz_main.js"></script>
 
 </body>

@@ -50,28 +50,131 @@ top: 0;
 height: 150px;
 width: 100%;
 }
+
 #nobel-map {
-background: azure;
-top: 160px;
-width: 700px;
-height: 350px;
+  background: azure;
+  top: 160px;
+  width: 700px;
+  height: 350px;
 }
+
+.graticule {
+fill: none;
+stroke: #777;
+stroke-width: .5px;
+stroke-opacity: .5;
+}
+.land {
+fill: #ddd;
+}
+.boundary {
+fill: none;
+stroke: #fff;
+stroke-width: .5px;
+}
+
+.country{
+  fill: rgb(175, 195, 186); /* light green */
+}
+.country.active{
+  fill: rgb(155, 175, 166); /* dark green */
+}
+
+.centroid{
+fill: red;
+fill-opacity:0.3;
+pointer-events:none;
+}
+.centroid.active {
+fill:goldenrod;
+fill-opacity:0.6;
+}
+
 #nobel-winner {
-top: 510px;
-left: 700px;
-height: 240px;
-width: 300px;
+  top: 510px;
+  left: 700px;
+  height: 240px;
+  width: 300px;
+
+  font-size: 11px;
+  overflow: auto;
+  overflow-x: hidden;
+  border-top: 4px solid;
 }
+
+#nobel-winner #winner-title {
+  font-size: 12px;
+  text-align: center;
+  padding: 2px;
+  font-weight: bold;
+}
+
+#nobel-winner #infobox .label {
+  display: inline-block;
+  width: 60px;
+  font-weight: bold;
+}
+
+#nobel-winner #biobox { font-size: 11px; }
+#nobel-winner #biobox p { text-align: justify; }
+
+#nobel-winner #picbox {
+  float: right;
+  margin-left: 5px;
+}
+
+#nobel-winner #picbox img { width:100px; }
+
+#nobel-winner #readmore {
+  font-weight: bold;
+  text-align: center;
+}
+
+
 #nobel-bar {
 top: 510px;
 height: 240px;
-
 width: 700px;
 }
+
 #nobel-list {
-top: 160px;
-height: 340px;
-width: 290px;
-left: 700px;
-padding-left: 10px;
+  top: 160px;
+  height: 340px;
+  width: 290px;
+  left: 700px;
+  padding-left: 10px;
+}
+
+#nobel-list { overflow: scroll; overflow-x: hidden; }
+#nobel-list table{ font-size: 10px; }
+#nobel-list table th#year {width: 30px; }
+#nobel-list table th#category { width: 120px; }
+#nobel-list table th#name { width: 120px; }
+
+#nobel-list h2 { font-size: 14px; margin: 4px; text-align: center }
+
+#nobel-list tr:hover{
+    cursor: pointer;
+    background: lightblue;
+}
+
+/* css/style.css */
+/* MAP TOOLTIP */
+#map-tooltip {
+  position: absolute;
+  pointer-events:none;
+  color:#eee;
+  font-size:12px;
+  opacity:0.7; /* a little transparent */
+  background:#222;
+  border:2px solid #555;
+  border-color: goldenrod;
+  padding:10px;
+  left: -999px;
+}
+
+#map-tooltip h2 {
+text-align: center;
+padding: 0px;
+margin: 0px;
 }

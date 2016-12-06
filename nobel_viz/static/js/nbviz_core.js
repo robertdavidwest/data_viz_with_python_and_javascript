@@ -22,15 +22,16 @@
         var i = nbviz.CATEGORIES.indexOf(category);
         return d3.hcl(i / nbviz.CATEGORIES.length * 360, 60, 70);
     };
+
     nbviz.getDataFromAPI = function(resource, callback){
         d3.json($EVE_API + resource, function(error, data) {
             if(error){
                 return callback(error);
             }
             if('_items' in data){
-                return callback(null, data._items);
+                callback(null, data._items);
             } else {
-                return callback(null, data);
+                callback(null, data);
             }            
         });
     };
@@ -70,8 +71,6 @@
 
     nbviz.getCountryData = function() {
 
-
-
         var countryGroups =  nbviz.countryDim.group().all();
 
         // make main data ball
@@ -109,16 +108,16 @@
     };
 
     nbviz.onDataChange = function() {
-        console.log("in 'onDataChange' function");
+
         var data = nbviz.getCountryData();
 
         nbviz.updateBarChart(data);
         //nbviz.updateMap(data);
-        //nbviz.updateList(nbviz.countryDim.top(Infinity));
+        nbviz.updateList(nbviz.countryDim.top(Infinity));
         
-        console.log(nbviz.countryDim.top(Infinity));
+
         data = nestDataByYear(nbviz.countryDim.top(Infinity));
-        console.log(data);
+
         nbviz.updateTimeChart(data);
     }
 
