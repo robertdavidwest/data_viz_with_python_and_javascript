@@ -1,24 +1,3 @@
-
-/*
-d3.select('#title').classed('fancy-title', true).text("My Bar Chart");
-
-var nobelData = [
-{code: 'USA', key:'United States', value:336},
-{code: 'GBR', key:'United Kingdom', value:98},
-{code: 'DEU', key:'Germany', value:79},
-{code: 'FRA', key:'France', value:60},
-{code: 'SWE', key:'Sweden', value:29},
-{code: 'CHE', key:'Switzerland', value:23},
-{code: 'JPN', key:'Japan', value:21},
-{code: 'RUS', key:'Russia', value:19},
-{code: 'NLD', key:'Netherlands', value:17},
-{code: 'AUT', key:'Austria', value:14}
-];
-console.log(nobelData);
-
-//var buildCrudeBarChart = function() {
-*/
-
 /* global $, _, crossfiler, d3 */
 (function(nbviz){
   'use strict';
@@ -42,16 +21,21 @@ console.log(nobelData);
     .orient("bottom");
 
     var yAxis = d3.svg.axis()
-    .scale(yScale)
-    .orient('left')
-    .ticks(10)
-    .tickFormat(function(d) { return d; } );
+            .scale(yScale)
+            .orient('left')
+            .ticks(10)
+            .tickFormat(function(d) {
+                if(nbviz.valuePerCapita){
+                    return d.toExponential();
+                }
+                return d;
+            });
 
     var svg = d3.select("#nobel-bar").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g").classed('chart', true)
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g").classed('chart', true)
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     svg.append("g")
     .attr("class", "x axis")

@@ -62,11 +62,30 @@
     };
 
     nbviz.filterByCountries = function(countryNames) {
-        //...
+
+        if(!countryNames.length){
+            nbviz.countryDim.filter();
+        }
+        else{
+            nbviz.countryDim.filter(function(name) {
+                return countryNames.indexOf(name) > -1;
+            });
+        }
+
+        if(countryNames.length === 1){
+            nbviz.activeCountry = countryNames[0];
+        }
+        else{
+            nbviz.activeCountry = null;
+        }
     };
 
     nbviz.filterByCategory = function(cat) {
-        //...
+        if (cat === nbviz.ALL_CATS){
+            nbviz.categoryDim.filter();
+        } else {
+          nbviz.categoryDim.filter(cat);
+        }
     };
 
     nbviz.getCountryData = function() {
@@ -86,12 +105,14 @@
                          capital: "FAKE",
                          gini: 1000000,
                          latlng: [0, 0],
-                         name: c.key
+                         name: c.key,
+                         population: 5000000
                 }
             }
 
-                if (nbviz.valuePerCapita){
-                value = value/ cData.population
+            if (nbviz.valuePerCapita){
+              console.log(cData.population);
+              value = value/ cData.population
             }       
             return {
                 key: c.key, // e.g. Japan
@@ -112,12 +133,10 @@
         var data = nbviz.getCountryData();
 
         nbviz.updateBarChart(data);
-        //nbviz.updateMap(data);
+        nbviz.updateMap(data);
         nbviz.updateList(nbviz.countryDim.top(Infinity));
-        
 
         data = nestDataByYear(nbviz.countryDim.top(Infinity));
-
         nbviz.updateTimeChart(data);
     }
 

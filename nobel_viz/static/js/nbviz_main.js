@@ -25,7 +25,7 @@ function ready(error, worldMap, countryNames, countryData, winnersData) {
     nbviz.makeFilterAndDimensions(winnersData);
 
     // INITIATE MENU AND MAP
-    //nbviz.initMenu();
+    nbviz.initMenu();
     nbviz.initMap(worldMap, countryNames)
 
     // TRIGGER UPDATE WITH WITH FULL WINNERS' DATASET

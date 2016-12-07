@@ -17,7 +17,6 @@
 
     rows.enter().append('tr')
         .on('click', function(d) {
-            console.log("You clicked a row " + JSON.stringify(d));
             nbviz.displayWinner(d);
         });
 
@@ -67,7 +66,7 @@
                 var property = d3.select(this).attr('name');
                 return wData[property];
             });
-        console.log(wData.bio_image);
+
         // add the biographic HTML
         nw.select('#biobox').html(wData.mini_bio);
         // Add a image if available otherwise remove the previous one
@@ -83,7 +82,7 @@
 
         nw.select('#readmore a').attr('href',
             'http://en.wikipedia.org/wiki/' + wData.name);
-        console.log(nw);
+
         } // end anonymous function
       );
 

@@ -40,7 +40,14 @@
 
 
     var getCentroid = function(d) {
-        var latlng = nbviz.data.nationalData[d.name].latlng;
+
+        // hack to handle countries that do not have country data available
+        if(nbviz.data.countryData.hasOwnProperty(d.name)){
+          var latlng = nbviz.data.countryData[d.name].latlng;
+        }
+        else {
+          var latlng = [0, 0];
+        }
         return projection([latlng[1], latlng[0]]);
     };
 

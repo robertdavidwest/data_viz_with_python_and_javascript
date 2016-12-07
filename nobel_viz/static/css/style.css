@@ -206,3 +206,9 @@ margin: 0px;
 /* YEAR CHART */
 
 .labels text { font-size:11px; }
+
+/* MENU-BAR */
+#nobel-menu div{display:inline-block}
+#gender-select {margin-left:20px;}
+
+#nobel-menu{ font-size: 14px; }
